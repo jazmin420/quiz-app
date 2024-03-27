@@ -1,5 +1,4 @@
 import { QuizQ } from './constants'
-import './App.css'
 import Quiz from './components/Quiz'
 
 function App() {
