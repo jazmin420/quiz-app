@@ -1,0 +1,162 @@
+$primary : rgb(26, 25, 23);
+$accent: rgba(22, 22, 174, 0.57);
+$bgcolor: rgb(255, 255, 255);
+$bg-accent: rgb(228, 220, 220);
+$disabled: rgb(186, 195, 198);
+$foreground: black;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: monospace;
+  background: linear-gradient(100deg, $primary , $accent);
+  color: $foreground;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh;
+}
+
+
+// Quiz.jsx
+
+.quiz-container {
+  width: 500px;
+  background-color: $bgcolor;
+  border-radius: 4px;
+  margin-top: 50px;
+  padding: 80px;
+  position: relative;
+
+  .active-question-no {
+    font-size: 32px;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  .total-question {
+    font-size: 16px;
+    font-weight: 600;
+    color: $disabled;
+    
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  ul {
+    margin-top: 20px;
+  }
+
+    li {
+      text-decoration: none;
+      list-style: none;
+      color: $foreground;
+      font-size: 18px;
+      background-color: $bgcolor;
+      border: 1px solid $disabled;
+      border-radius: 20px;
+      padding: 15px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    .selected-answer {
+      background-color: $primary;
+      border : 1px solid $accent;
+      color : $bgcolor;
+    }
+    .correct-answer {
+      background-color: green;
+      border : 1px solid green;
+      color : $bgcolor;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+}
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background: linear-gradient(100deg, $primary , $accent);
+  border-radius: 16px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  color: $bgcolor;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+
+  &:disabled {
+    color: $bgcolor;
+    cursor: not-allowed;
+    background: $disabled;
+  }
+}
+
+
+
+
+//Timer.jsx
+.timer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid $disabled;
+
+  .progress {
+    height: 5px;
+    transition-duration: 1s;
+    width: 0;
+    transition-timing-function: linear;
+  }
+}
+
+// Results.jsx
+
+.result {
+  text-align: center;
+
+  h3 {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: $accent;
+    margin-top: 15px;
+  }
+  p {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 15px 0;
+  }
+  span {
+    color: $primary;
+    font-weight: 900;
+    margin-left: 5px;
+    font-size: 25px;
+  }
+
+  table {
+    width: 50%;
+    text-align: left;
+    margin: 50px auto 20px;
+    border-collapse: collapse;
+
+    tr {
+      border: 1px solid;
+    }
+  }
+}
