@@ -20,6 +20,7 @@ function Quiz({ questions}) {
   const { question, choices, correctAnswer } = questions[currentQuestion];
   
     const clickAnswer = (answer, index) => {
+      if (isAnswered) return;
       setIsAnswered(true);
       setAnswerIndex(index);
       setIsTimeUp(false);
@@ -41,7 +42,7 @@ function Quiz({ questions}) {
 
   
   const clickNext = (finalAnswer) => {
-    if (!isAnswered) return;
+    if (!isAnswered || answerIndex === null) return;
     clearTimeout(timeoutId); 
     setAnswerIndex(null);
     setShowAnswer(false);
@@ -81,11 +82,22 @@ function Quiz({ questions}) {
   }
 
   const handleTimeUp = () => {
-    if (!isAnswered) {
-      setAnswer(false);
+    if (!isAnswered && answerIndex !== null) {
+      if (choices[answerIndex] === correctAnswer) {
+        setResult((prev) => ({
+          ...prev,
+          score: prev.score + 5,
+          correctAnswers: prev.correctAnswers + 1
+        }));
+      } else {
+        setResult((prev) => ({
+          ...prev,
+          wrongAnswers: prev.wrongAnswers + 1
+        }));
+      }
       setIsAnswered(true);
-      setIsTimeUp(true);
     }
+    setIsTimeUp(true);
   }
 
   return (
