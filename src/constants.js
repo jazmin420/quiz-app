@@ -2,63 +2,63 @@ export const QuizQ = {
 questions: [
   {
       "id": 1,
-      "question": "Which of the following is used in React.js to increase performance?",
+      "question": "What is ReactJS?",
       "choices": [
-          "Virtual DOM",
-          "Original DOM",
-          "Both A and B",
-          "None of the above"
+          "A server-side framework",
+          "A front-end JavaScript library",
+          "A back-end JavaScript framework",
+          "A database management system"
       ],
       "type": "MCQs",
-      "correctAnswer": "Virtual DOM"
+      "correctAnswer": "A front-end JavaScript library"
   },
   {
       "id": 2,
-      "question": "What is ReactJS?",
+      "question": "Which company developed ReactJS?",
       "choices": [
-          "Server-side framework",
-          "User Interface",
-          "both a and b",
-          "None of the above"
+          "Facebook",
+          "Google",
+          "Microsoft",
+          "Apple"
       ],
       "type": "MCQs",
-      "correctAnswer": "User Interface"
+      "correctAnswer": "Facebook"
   },
   {
       "id": 3,
-      "question": "Identify the one which is used to pass data to components from outside",
+      "question": "What is JSX in ReactJS?",
       "choices": [
-          "Render with arguments",
+          "A syntax extension for JavaScript",
+          "A templating engine",
+          "A state management library",
+          "A build tool"
+      ],
+      "type": "MCQs",
+      "correctAnswer": "A syntax extension for JavaScript"
+  },
+  {
+      "id": 4,
+      "question": "In React, what is used to pass data to a component from outside?",
+      "choices": [
           "setState",
-          "PropTypes",
-          "props"
+          "props",
+          "state",
+          "getInitialState"
       ],
       "type": "MCQs",
       "correctAnswer": "props"
   },
   {
-      "id": 4,
-      "question": "In which language is React.js written?",
-      "choices": [
-          "Python",
-          "Java",
-          "C#",
-          "JavaScript"
-      ],
-      "type": "MCQs",
-      "correctAnswer": "JavaScript"
-  },
-  {
       "id": 5,
-      "question": "What is Babel?",
+      "question": "What is the purpose of the virtual DOM in React?",
       "choices": [
-          "JavaScript interpreter",
-          "JavaScript transpiler",
-          "JavaScript compiler",
-          "None of the above"
+          "To improve website security",
+          "To optimize database queries",
+          "To improve performance by minimizing DOM manipulation",
+          "To handle server-side rendering"
       ],
       "type": "MCQs",
-      "correctAnswer": "JavaScript compiler"
+      "correctAnswer": "To improve performance by minimizing DOM manipulation"
   }
 ]
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { resultInitialState } from '../constants';
 import Timer from './Timer';
 import Results from './Results';
@@ -13,20 +13,35 @@ function Quiz({ questions}) {
   const [showAnswer, setShowAnswer] = useState(true)
   const [timeoutId, setTimeoutId] = useState(null);
   const [optionClicked, setOptionClicked] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [isTimeUp, setIsTimeUp] = useState(false);
 
 
   const { question, choices, correctAnswer } = questions[currentQuestion];
   
-  const clickAnswer = (answer, index) => {
-    setAnswerIndex(index);
-    if (answer === correctAnswer) {
-      setAnswer(true);
-    } else {
-      setAnswer(false);
+    const clickAnswer = (answer, index) => {
+      setIsAnswered(true);
+      setAnswerIndex(index);
+      setIsTimeUp(false);
+      if (answer === correctAnswer) {
+        setAnswer(true);
+      } else {
+        setAnswer(false);
+      }
+      clearTimeout(timeoutId); 
+      setTimeoutId(setTimeout(handleTimeUp, 5000)); 
     }
-  }
+
+    useEffect(() => {
+      if (isAnswered && isTimeUp) {
+        clickNext(answer);
+        setIsTimeUp(false);
+      }
+    }, [isAnswered, isTimeUp]);
+
   
   const clickNext = (finalAnswer) => {
+    if (!isAnswered) return;
     clearTimeout(timeoutId); 
     setAnswerIndex(null);
     setShowAnswer(false);
@@ -43,18 +58,19 @@ function Quiz({ questions}) {
       wrongAnswers: prev.wrongAnswers + 1
     }
     );
-
+  
     if (currentQuestion !== questions.length-1) {
       setCurrentQuestion((prev) => prev + 1)
     } else {
       setCurrentQuestion(0);
       setShowResult(true);
     }
-
+  
     setTimeoutId(setTimeout(() => {
       setShowAnswer(true);
       setOptionClicked(false);
-    }));
+      setIsAnswered(false); 
+    }, 1000));
   };
 
   const TryAgain =() =>{
@@ -65,8 +81,11 @@ function Quiz({ questions}) {
   }
 
   const handleTimeUp = () => {
-    setAnswer(false)
-    clickNext(false)
+    if (!isAnswered) {
+      setAnswer(false);
+      setIsAnswered(true);
+      setIsTimeUp(true);
+    }
   }
 
   return (
